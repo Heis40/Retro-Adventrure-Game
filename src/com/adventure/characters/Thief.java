@@ -1,9 +1,11 @@
+package com.adventure.characters;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
+import com.adventure.interfaces.Combat;
 
 public class Thief extends GameCharacter implements Combat {
     private String name;
@@ -11,13 +13,7 @@ public class Thief extends GameCharacter implements Combat {
     private String abilities;
     private String levelups;
 
-    private static List<String> battleResults = new ArrayList<>();
-    private static int[] characterDamage = new int[3];
-
-    
-
-    protected static volatile int dragonHealth = 300;
-    protected static final Object dragonLock = new Object();
+   
     
     public Thief(String name, String role, String abilities, String levelups) {
         this.name = name;
@@ -102,9 +98,11 @@ public class Thief extends GameCharacter implements Combat {
             if (tradeChoice.equalsIgnoreCase("yes")) {
                 System.out.println("The thief trades with the villagers and gains valuable supplies.");
 
-                if(grabTreasure()){
-                    battleResults.add(getHeroName() + " acquired treasure while trading.");
-                }
+                
+                    if(grabTreasure()){
+                        battleResults.add(getHeroName() + " acquired treasure while trading.");
+                    }
+                
             } else {
                 System.out.println("The thief decides not to trade and continues on his quest.");
             }
@@ -151,7 +149,7 @@ public class Thief extends GameCharacter implements Combat {
                     }
 
                     //Record Battle damage
-                    characterDamage[2] = 15;
+                    characterDamage[2] = 20;
                     battleResults.add(getHeroName() + " defeated rock people in the mountains.");
                     gainExperience(50);
                     System.out.println(getHeroName() + " gains experience! Total: " + experience);
@@ -197,6 +195,7 @@ public class Thief extends GameCharacter implements Combat {
     } // FIXED: Properly close continueAdventure method
 
     // FIXED: Add attackDragon method outside of continueAdventure
+    /* 
     public void attackDragon() {
         synchronized(dragonLock) {
             if (dragonHealth > 0) {
@@ -207,7 +206,6 @@ public class Thief extends GameCharacter implements Combat {
     }
 
     // Add limited treasure competition
-private static AtomicInteger treasureCount = new AtomicInteger(3);
 
 public boolean grabTreasure() {
     int remaining = treasureCount.decrementAndGet();
@@ -220,4 +218,5 @@ public boolean grabTreasure() {
         return false;
     }
 }
+*/
 } // FIXED: Properly close Thief class

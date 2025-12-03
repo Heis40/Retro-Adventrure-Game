@@ -1,5 +1,12 @@
+package com.adventure.main;
+
 import java.util.Scanner;
-import java.util.Random;
+import com.adventure.characters.GameCharacter;
+import com.adventure.characters.Knight;
+import com.adventure.characters.Thief;
+import com.adventure.characters.Wizard;
+
+
 public class RetroMultithreadingAdventure  {
     public static void main(String[] args) {
         //PHASE 1: Introduction
@@ -43,14 +50,14 @@ public class RetroMultithreadingAdventure  {
         System.out.println("== THE FINAL CHAPTER ==");
 
         // Set choices for each character
-        ((Knight)knight).setChoices(tradeChoice, pathChoice);
-        ((Wizard)wizard).setChoices(tradeChoice, pathChoice);
-        ((Thief)thief).setChoices(tradeChoice, pathChoice);
+        knight.setChoices(tradeChoice, pathChoice);
+        wizard.setChoices(tradeChoice, pathChoice);
+        thief.setChoices(tradeChoice, pathChoice);
 
         // Continue adventures with existing character objects (NO new threads)
-        ((Knight)knight).continueAdventure();
-        ((Wizard)wizard).continueAdventure();
-        ((Thief)thief).continueAdventure();
+        knight.continueAdventure();
+        wizard.continueAdventure();
+        thief.continueAdventure();
 
     }
 }

@@ -1,8 +1,11 @@
+package com.adventure.characters;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
+import com.adventure.interfaces.Combat;
 
 public class Knight extends GameCharacter implements Combat {
     private String name;
@@ -10,16 +13,10 @@ public class Knight extends GameCharacter implements Combat {
     private String abilities;
     private String levelups;
 
-    // Arrays for tracking
-    private static List<String> battleResults = new ArrayList<>();
-    private static int[] characterDamage = new int[3];
-
-    // Stream for aggregation
-    int totalDamage = Arrays.stream(characterDamage).sum();
 
 
-    protected static volatile int dragonHealth = 300;
-    protected static final Object dragonLock = new Object();
+    
+
 
     public Knight(String name, String role, String abilities, String levelups) {
         this.name = name;
@@ -105,8 +102,8 @@ public class Knight extends GameCharacter implements Combat {
                 if(grabTreasure()){
                     battleResults.add(getHeroName() + " acquired treasure while trading.");
                 }
-            
-            } else {
+            }
+            else {
                 System.out.println("The knight decides not to trade and continues on his quest.");
             }
 
@@ -197,6 +194,7 @@ public class Knight extends GameCharacter implements Combat {
     } 
 
     // Synchronized dragon attack method
+    /* 
     public void attackDragon() {
         synchronized(dragonLock) {
             if (dragonHealth > 0) {
@@ -205,9 +203,8 @@ public class Knight extends GameCharacter implements Combat {
             }
         }
     }
-
     // Add limited treasure competition
-private static AtomicInteger treasureCount = new AtomicInteger(3);
+
 
 public boolean grabTreasure() {
     int remaining = treasureCount.decrementAndGet();
@@ -220,4 +217,5 @@ public boolean grabTreasure() {
         return false;
     }
 }
+*/
 } // FIXED: Properly close Knight class

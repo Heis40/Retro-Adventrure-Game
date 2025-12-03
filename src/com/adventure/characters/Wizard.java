@@ -1,8 +1,11 @@
+package com.adventure.characters;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
+import com.adventure.interfaces.Combat;
 
 public class Wizard extends GameCharacter implements Combat {
     private String name;
@@ -10,14 +13,7 @@ public class Wizard extends GameCharacter implements Combat {
     private String abilities;
     private String levelups;
 
-    private static List<String> battleResults = new ArrayList<>();
-    private static int[] characterDamage = new int[3];
-
-    // Stream for aggregation
-    int totalDamage = Arrays.stream(characterDamage).sum();
-
-    protected static volatile int dragonHealth = 300;
-    protected static final Object dragonLock = new Object();
+    
    
     public Wizard(String name, String role, String abilities, String levelups) {
         this.name = name;
@@ -105,8 +101,10 @@ public class Wizard extends GameCharacter implements Combat {
             if (tradeChoice.equalsIgnoreCase("yes")) {
                 System.out.println("The wizard trades with the villagers and gains valuable supplies.");
 
-                if(grabTreasure()){
-                    battleResults.add(getHeroName() + " acquired treasure while trading.");
+                synchronized(this) {
+                    if(grabTreasure()){
+                        battleResults.add(getHeroName() + " acquired treasure while trading.");
+                    }
                 }
             } else {
                 System.out.println("The wizard decides not to trade and continues on his quest.");
@@ -179,7 +177,9 @@ public class Wizard extends GameCharacter implements Combat {
 
             // FIXED: Corrected the victory logic
             if (hasAlive()) {  // Changed from !hasAlive()
+                battleResults.add(getHeroName() + " defeated the dragon.");
                 gainExperience(100);
+                System.out.println(getHeroName() + " gains massive experience! Total: " + experience);
 
                  // Stream for aggregation  
                 int totalDamage = Arrays.stream(characterDamage).sum();
@@ -197,6 +197,7 @@ public class Wizard extends GameCharacter implements Combat {
         }
     } // FIXED: Properly close continueAdventure method
 
+    /* 
     // FIXED: Add attackDragon method outside of continueAdventure
     public void attackDragon() {
         synchronized(dragonLock) {
@@ -208,7 +209,6 @@ public class Wizard extends GameCharacter implements Combat {
     }
 
     // Add limited treasure competition
-private static AtomicInteger treasureCount = new AtomicInteger(3);
 
 public boolean grabTreasure() {
     int remaining = treasureCount.decrementAndGet();
@@ -221,4 +221,5 @@ public boolean grabTreasure() {
         return false;
     }
 }
+*/
 } // FIXED: Properly close Wizard class
