@@ -35,6 +35,14 @@ public class RetroMultithreadingAdventure  {
             System.out.println("Adventure was interrupted.");
         }
        
+        try {
+            // Small delay to ensure all arrival messages are printed before proceeding
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            // Handle exception
+        }
+        
+        System.out.println("== ALL HEROES HAVE ARRIVED AT VILLAGE ==");
 
         //PHASE 2: Trading Encounter
         System.out.println("== THE VILLAGE ==");
@@ -59,5 +67,6 @@ public class RetroMultithreadingAdventure  {
         wizard.continueAdventure();
         thief.continueAdventure();
 
+        scanner.close();
     }
 }
