@@ -44,15 +44,30 @@ public class RetroMultithreadingAdventure  {
         
         System.out.println("== ALL HEROES HAVE ARRIVED AT VILLAGE ==");
 
-        //PHASE 2: Trading Encounter
+       //PHASE 2: Trading Encounter
         System.out.println("== THE VILLAGE ==");
-        System.out.println("Do you want to trade with the villagers? (yes/no)");
-        String tradeChoice = scanner.nextLine();
-
-        //PHASE 3: Path Encounter.
+        String tradeChoice;
+        // Get valid trade choice from user
+        while (true) {
+            System.out.println("Do you want to trade with the villagers? (yes/no)");
+            tradeChoice = scanner.nextLine().trim();
+            if (tradeChoice.equalsIgnoreCase("yes") || tradeChoice.equalsIgnoreCase("no")) {
+                break;
+            }
+            System.out.println("Invalid choice. Please enter 'yes' or 'no'.");
+        }
+        //PHASE 3: Path Encounter
         System.out.println("== FORK IN THE ROAD ==");
-        System.out.println("Does the party choose to enter the forest or the mountains? (forest/mountains)");
-        String pathChoice = scanner.nextLine();
+        String pathChoice;
+        // Get valid path choice from user
+        while (true) {
+            System.out.println("Does the party choose to enter the forest or the mountains? (forest/mountains)");
+            pathChoice = scanner.nextLine().trim();
+            if (pathChoice.equalsIgnoreCase("forest") || pathChoice.equalsIgnoreCase("mountains")) {
+                break;
+        }
+        System.out.println("Invalid choice. Please enter 'forest' or 'mountains'.");
+        }
 
         //PHASE 4: Final chapter.
         System.out.println("== THE FINAL CHAPTER ==");

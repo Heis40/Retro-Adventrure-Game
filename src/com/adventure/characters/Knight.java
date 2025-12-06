@@ -72,6 +72,13 @@ public class Knight extends GameCharacter implements Combat {
 
         System.out.println("The knight arrives at a peaceful village.");
         System.out.flush();
+
+        try {
+            // Small delay to ensure message order
+            Thread.sleep(50);
+        } catch (InterruptedException e) {
+            // Handle exception
+        }
     }
 
     // Continues the knight's adventure based on choices
@@ -87,52 +94,30 @@ public class Knight extends GameCharacter implements Combat {
                     battleResults.add(getHeroName() + " acquired treasure while trading.");
                 }
             }
-            else {
+            else  {
                 System.out.println("The knight decides not to trade and continues on his quest.");
             }
+            
 
             System.out.println("The knight reaches a fork in the road: a dark forest to the left and towering mountains to the right.");
             
             //Chooses forest or mountains based on pathChoice
             if (pathChoice.equalsIgnoreCase("forest")) {
                 exploreForest();
-            } else {
+            } 
+            else {
                 climbMountains();
             }
-
+            
+            // Final battle with the dragon method call
+            dragonBattle();
+          
            
-            /* 
-            // Dragon battle section
-            System.out.println("The knight unites with the wizard and thief to form a powerful party.");
-            System.out.println("Together, they make their way to the dragon's castle, ready for the final battle!");
-            System.out.println("The party confronts the fearsome dragon!");
-            
-            // Use synchronized dragon attack
-            attackDragon();
-
-            System.out.println(getHeroName() + " takes damage from dragon!");
-            takeDamage(30);
-            System.out.println("Health remaining: " + health);
-
-            
-            if (hasAlive()) {  // Changed from !hasAlive()
-                battleResults.add(getHeroName() + " defeated the dragon.");
-                gainExperience(100);
-                System.out.println(getHeroName() + " gains massive experience! Total: " + experience);
-
-                System.out.println("Battle Results:");
-                battleResults.forEach(result -> System.out.println("- " + result));
-
-                System.out.println("After an epic battle, the party emerges victorious over the dragon!");
-                System.out.println("The kingdom is saved, and the heroes are celebrated!");
-            } else {
-                System.out.println(getHeroName() + " has fallen to the Dragon!");
-                return;
-            }
-           */
         }
         
     } 
+
+    // Knight explores the forest
      private void exploreForest(){
          System.out.println("The knight bravely enters the dark forest, ready for whatever challenges lie ahead.");
                 try {
@@ -152,6 +137,7 @@ public class Knight extends GameCharacter implements Combat {
                 }
 
      }
+     // Knight climbs the mountains
      private void climbMountains() {
                  System.out.println("The knight begins to climb the towering mountains, determined to reach the summit.");
                 try {
@@ -167,6 +153,7 @@ public class Knight extends GameCharacter implements Combat {
                     takeDamage(20);
                     System.out.println("Health remaining: " + health);
 
+                    // Check if knight is still alive
                     if (!hasAlive()) {
                         System.out.println(getHeroName() + " has fallen!");
                         return;

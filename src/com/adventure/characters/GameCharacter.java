@@ -105,30 +105,32 @@ public abstract class GameCharacter extends Thread {
         }
     }
 
+    // Final dragon battle method
     protected void dragonBattle(){
-         System.out.println(getHeroName() + " unites with the party to form a powerful team.");
-         System.out.println("Together, they make their way to the dragon's castle, ready for the final battle!");
-         System.out.println("The party confronts the fearsome dragon!");
-    
-         attackDragon();
+     System.out.println(getHeroName() + " unites with the party to form a powerful team.");
+     System.out.println("Together, they make their way to the dragon's castle, ready for the final battle!");
+     System.out.println("The party confronts the fearsome dragon!");
 
-         System.out.println(getHeroName() + " takes damage from dragon!");
-         takeDamage(30);
-         System.out.println("Health remaining: " + health);
+     attackDragon();
 
-         if (hasAlive()) {
-             battleResults.add(getHeroName() + " defeated the dragon.");
-             gainExperience(100);
+     System.out.println(getHeroName() + " takes damage from dragon!");
+     takeDamage(30);
+     System.out.println("Health remaining: " + health);
 
-             System.out.println("Battle Results:");
-             battleResults.forEach(result -> System.out.println("- " + result));
+     // Check if character is alive after battle
+     if (hasAlive()) {
+         battleResults.add(getHeroName() + " defeated the dragon.");
+         gainExperience(100);
 
-             System.out.println("After an epic battle, the party emerges victorious over the dragon!");
-             System.out.println("The kingdom is saved, and the heroes are celebrated!");
-    }   else {
-             System.out.println(getHeroName() + " has fallen to the Dragon!");
-    }
-    }
+         System.out.println("Battle Results:");
+         battleResults.forEach(result -> System.out.println("- " + result));
+
+         System.out.println("After an epic battle, the party emerges victorious over the dragon!");
+         System.out.println("The kingdom is saved, and the heroes are celebrated!");
+     } else {
+         System.out.println(getHeroName() + " has fallen to the Dragon!");
+     }
+}
 
 }
 

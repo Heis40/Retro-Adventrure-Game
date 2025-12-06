@@ -1,10 +1,6 @@
 package com.adventure.characters;
 
-//import java.util.ArrayList;
-//import java.util.Arrays;
-//import java.util.List;
-//import java.util.Random;
-//import java.util.concurrent.atomic.AtomicInteger;
+
 import com.adventure.interfaces.Combat;
 
 public class Thief extends GameCharacter implements Combat {
@@ -14,7 +10,7 @@ public class Thief extends GameCharacter implements Combat {
     private String levelups;
 
    
-    
+    // Constructor
     public Thief() {
         this.name = "Jack the Shadow";
         this.role = "Rogue";
@@ -24,12 +20,14 @@ public class Thief extends GameCharacter implements Combat {
         this.experience = 0;
     }
 
+    // Level up method
     public void levelUp() {
         System.out.println(name + " has leveled up!");
         System.out.println("Gained: " + levelups);
         health += 10; // Bonus health on level up
     }
 
+    // Getters methods
     public String getRole() {
         return role;
     }
@@ -54,11 +52,12 @@ public class Thief extends GameCharacter implements Combat {
         System.out.println(name + " disappears into the shadows to evade the attack!");
     }
 
+    // Runs first phase of thief's adventure
     public void run() {
-        System.out.println("Abilities: " + getAbilities());
-        System.out.println("The brave thief has set out on a quest to vanquish the dragon!");
+        System.out.println("Abilities: " + getAbilities());// Displays the thief's abilities
+        System.out.println("The brave thief has set out on a quest to vanquish the dragon!");// Intro message
 
-        
+        // Simulate steps taken by the thief
         try {
             for (int i = 1; i <= 5; i++) {
                 System.out.println("Thief: Step" + i);
@@ -71,11 +70,13 @@ public class Thief extends GameCharacter implements Combat {
         System.out.println("The thief arrives at a peaceful village.");
     }
 
+    // Continues the adventure based on user choices
     public void continueAdventure() {
 
-       
+       // Check if choices are set
         if (tradeChoice != null && pathChoice != null) {
             
+            // Trading encounter
             if (tradeChoice.equalsIgnoreCase("yes")) {
                 System.out.println("The thief trades with the villagers and gains valuable supplies.");
 
@@ -84,52 +85,33 @@ public class Thief extends GameCharacter implements Combat {
                         battleResults.add(getHeroName() + " acquired treasure while trading.");
                     }
                 
-            } else {
+            } 
+            else  {
                 System.out.println("The thief decides not to trade and continues on his quest.");
             }
+            
 
             System.out.println("The thief reaches a fork in the road: a dark forest to the left and towering mountains to the right.");
             
+            // Path encounter
             if (pathChoice.equalsIgnoreCase("forest")) {
                 exploreForest();
-            } else {
+            } 
+            else  {
                 climbMountains();
             }
-            /*
-            // Dragon battle section
-            System.out.println("The thief unites with the wizard and knight to form a powerful party.");
-            System.out.println("Together, they make their way to the dragon's castle, ready for the final battle!");
-            System.out.println("The party confronts the fearsome dragon!");
             
-            // Use synchronized dragon attack
-            attackDragon();
-
-            System.out.println(getHeroName() + " takes damage from dragon!");
-            takeDamage(30);
-            System.out.println("Health remaining: " + health);
-
-            // FIXED: Corrected the victory logic
-            if (hasAlive()) {  // Changed from !hasAlive()
-                battleResults.add(getHeroName() + " defeated the dragon.");
-                gainExperience(100);
-                System.out.println(getHeroName() + " gains massive experience! Total: " + experience);
-
-                System.out.println("Battle Results:");
-                battleResults.forEach(result -> System.out.println("- " + result));
-
-                System.out.println("After an epic battle, the party emerges victorious over the dragon!");
-                System.out.println("The kingdom is saved, and the heroes are celebrated!");
-
-            } else {
-                System.out.println(getHeroName() + " has fallen to the Dragon!");
-                return;
-            }
-            */
+             // Final battle with the dragon method call 
+             dragonBattle();
+             
+           
         }
     
     } 
     
+    // Thief explores the forest
     private void exploreForest(){
+        // Simulate forest exploration
         System.out.println("The thief bravely enters the dark forest, ready for whatever challenges lie ahead.");
                 try {
                     for (int i = 1; i <= 5; i++) {
@@ -151,7 +133,9 @@ public class Thief extends GameCharacter implements Combat {
                 }
     }
 
+    // Thief climbs the mountains
     private void climbMountains() {
+        // Simulate mountain climbing
         System.out.println("The thief begins to climb the towering mountains, determined to reach the summit.");
                 try {
                     for (int i = 1; i <= 5; i++) {

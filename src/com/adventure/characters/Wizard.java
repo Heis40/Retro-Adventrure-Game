@@ -1,10 +1,6 @@
 package com.adventure.characters;
 
-//import java.util.ArrayList;
-//import java.util.Arrays;
-//import java.util.List;
-//import java.util.Random;
-//import java.util.concurrent.atomic.AtomicInteger;
+
 import com.adventure.interfaces.Combat;
 
 public class Wizard extends GameCharacter implements Combat {
@@ -14,7 +10,7 @@ public class Wizard extends GameCharacter implements Combat {
     private String levelups;
 
     
-
+    // Constructor
     public Wizard() {
         this.name = "Gandalf the Grey";
         this.role = "Mage";
@@ -24,12 +20,14 @@ public class Wizard extends GameCharacter implements Combat {
         this.experience = 0;
     }
     
+    // Level up method
     public void levelUp() {
         System.out.println(name + " has leveled up!");
         System.out.println("Gained: " + levelups);
         health += 15; // Bonus health on level up
     }
     
+    // Getters methods
     public String getRole() {
         return role;
     }
@@ -86,8 +84,12 @@ public class Wizard extends GameCharacter implements Combat {
                         battleResults.add(getHeroName() + " acquired treasure while trading.");
                     }
                 }
-            } else {
+            }
+             else if (tradeChoice.equalsIgnoreCase("no")) {
                 System.out.println("The wizard decides not to trade and continues on his quest.");
+            }
+            else{
+                System.out.println("Invalid trade choice.");
             }
 
             System.out.println("The wizard reaches a fork in the road: a dark forest to the left and towering mountains to the right.");
@@ -95,43 +97,21 @@ public class Wizard extends GameCharacter implements Combat {
             //Chooses forest or mountains based on pathChoice
             if (pathChoice.equalsIgnoreCase("forest")) {
                 enterForest();
-            } else {
+            } 
+            else  {
                 climbMountains();
             }
 
-            /* 
-            // Dragon battle section
-            System.out.println("The wizard unites with the knight and thief to form a powerful party.");
-            System.out.println("Together, they make their way to the dragon's castle, ready for the final battle!");
-            System.out.println("The party confronts the fearsome dragon!");
+             // Final battle with the dragon method call 
+             dragonBattle();
+             
             
-            // Use synchronized dragon attack
-            attackDragon();
-
-            System.out.println(getHeroName() + " takes damage from dragon!");
-            takeDamage(30);
-            System.out.println("Health remaining: " + health);
-
-            // FIXED: Corrected the victory logic
-            if (hasAlive()) {  // Changed from !hasAlive()
-                battleResults.add(getHeroName() + " defeated the dragon.");
-                gainExperience(100);
-                System.out.println(getHeroName() + " gains massive experience! Total: " + experience);
-
-                
-                System.out.println("Battle Results:");
-                battleResults.forEach(result -> System.out.println("- " + result));
-
-                System.out.println("After an epic battle, the party emerges victorious over the dragon!");
-                System.out.println("The kingdom is saved, and the heroes are celebrated!");
-            } else {
-                System.out.println(getHeroName() + " has fallen to the Dragon!");
-                return;
-            }
-            */
         }
     } 
+
+    // Wizard explores the forest
     private void enterForest(){
+        // Simulate forest exploration
          System.out.println("The wizard bravely enters the dark forest, ready for whatever challenges lie ahead.");
                 try {
                     for (int i = 1; i <= 5; i++) {
@@ -151,6 +131,7 @@ public class Wizard extends GameCharacter implements Combat {
                 }
     }
     
+    // Wizard climbs the mountains
     private void climbMountains(){
         System.out.println("The wizard begins to climb the towering mountains, determined to reach the summit.");
                 try {
